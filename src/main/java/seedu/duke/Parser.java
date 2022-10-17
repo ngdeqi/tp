@@ -47,6 +47,8 @@ import static seedu.duke.CommandStructure.COMMAND_UNPAIR;
 import static seedu.duke.CommandStructure.DELETE_CLIENT_FLAGS;
 import static seedu.duke.CommandStructure.DELETE_PROPERTY_FLAGS;
 import static seedu.duke.CommandStructure.PAIR_FLAGS;
+import static seedu.duke.CommandStructure.SUBCOMMAND_CLIENT;
+import static seedu.duke.CommandStructure.SUBCOMMAND_PROPERTY;
 import static seedu.duke.CommandStructure.UNPAIR_FLAGS;
 import static seedu.duke.Messages.EXCEPTION;
 import static seedu.duke.Messages.MESSAGE_ADD_CLIENT_WRONG_FORMAT;
@@ -95,9 +97,9 @@ public class Parser {
             ArrayList<String> processedAddCommandDetails = partitionCommandTypeAndDetails(commandDetails);
             String subAddCommandType = processedAddCommandDetails.get(0);
             String clientOrPropertyDescriptions = processedAddCommandDetails.get(1);
-            if (subAddCommandType.equals("-property")) {
+            if (subAddCommandType.equals(SUBCOMMAND_PROPERTY)) {
                 return prepareForCommandAddProperty(clientOrPropertyDescriptions);
-            } else if (subAddCommandType.equals("-client")) {
+            } else if (subAddCommandType.equals(SUBCOMMAND_CLIENT)) {
                 return prepareForCommandAddClient(clientOrPropertyDescriptions);
             } else {
                 throw new UndefinedSubCommandTypeException(MESSAGE_MISSING_SUB_COMMAND_TYPE);
@@ -108,9 +110,9 @@ public class Parser {
             ArrayList<String> processedDeleteCommandDetails = partitionCommandTypeAndDetails(commandDetails);
             String subDeleteCommandType = processedDeleteCommandDetails.get(0);
             String deleteDescriptions = processedDeleteCommandDetails.get(1).trim();
-            if (subDeleteCommandType.equals("-property")) {
+            if (subDeleteCommandType.equals(SUBCOMMAND_PROPERTY)) {
                 return prepareForCommandDeleteProperty(deleteDescriptions);
-            } else if (subDeleteCommandType.equals("-client")) {
+            } else if (subDeleteCommandType.equals(SUBCOMMAND_CLIENT)) {
                 return prepareForCommandDeleteClient(deleteDescriptions);
             } else {
                 throw new UndefinedSubCommandTypeException(MESSAGE_MISSING_SUB_COMMAND_TYPE);
